@@ -1,0 +1,40 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Componente1 from '../components/componente1.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+
+		<Header/>
+        <Componente1/>
+        <Footer/>
+        <slot />
+
+	</body>
+       
+		
+</html>
+<style is:global>
+	html {
+		font-family: system-ui, sans-serif;
+		background: #FFFFFF;
+		background-size: 224px;
+		color-scheme: dark-light;
+	}
+
+</style>
