@@ -1,12 +1,34 @@
 ---
+import Card from "./react/cards"
 ---
 
 
 <html>
     <body class="h-screen">
-       <section class="h-full w-full bg-rose-800">
-        <div class="h-full">
-            
+       <section class="w-full bg-custom-3 justify-center">
+        <h1 class="flex justify-center">Categorias</h1>
+
+        <div class="h-max flex flex-wrap space-x-4 mx-6">
+            <!-- ! Tarjetas de Categorías  -->
+             <!--*Categoría de Development -->
+             <Card title={"Developoment"} image={"./img/design.jpg"} 
+             topic={"Design"} description={"Desarrolla tu propio mundo"}/>
+
+          <!--*Categoría de Idiomas -->
+            <Card title={"Idiomas"} image={"./img/idiomas.jpg"} 
+          topic={"Idiomas"} description={"Más de 10 idiomas disponibles"}/>
+
+          <!--*Categoría de Música -->
+          <Card title={"Music"} image={"./img/musica.jpeg"} 
+          topic={"Music"} description={"Domina el arte de la música"}/>
+
+          <!-- *Categoria de Arte -->
+          <Card title={"Arte"} image={"./img/musica.jpeg"} 
+          topic={"Arte"} description={"Domina el arte de el lienzo de la vida"}/>
+
+          <!-- *Categoria de Cocina -->
+          <Card title={"Cocina"} image={"./img/musica.jpeg"} 
+          topic={"Cocina"} description={"Descubre el mundo culinario"}/>
         </div>
        </section>
     </body>
