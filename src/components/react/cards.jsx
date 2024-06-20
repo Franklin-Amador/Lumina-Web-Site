@@ -1,4 +1,4 @@
-const Card = ({ title, description, image, topic }) => {
+const Card = ({ title, description, image, topic, route }) => {
     return (
      
 <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg w-72 my-2">
@@ -9,7 +9,7 @@ const Card = ({ title, description, image, topic }) => {
 />
 
 <div className="bg-white p-4 sm:p-6">
-  <a href="#">
+  <a href={route}>
     <h3 className="mt-0.5 text-lg text-gray-900">{topic}</h3>
   </a>
 

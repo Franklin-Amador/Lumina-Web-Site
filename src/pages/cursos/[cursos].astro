@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+    return [
+      { params: { cursos: 'arte' } },
+      { params: { cursos: 'finanzas'} },
+      { params: { cursos: 'cocina' } },
+        { params: { cursos: 'programacion' } },
+        { params: { cursos: 'marketing' } },
+        { params: { cursos: 'idiomas' } },
+        { params: { cursos: 'design' } },
+        { params: { cursos: 'fotografia' } },
+        { params: { cursos: 'musica' } },
+        { params: { cursos: 'salud' } },
+        { params: { cursos: 'deportes' } },
+        { params: { cursos: 'tecnologia' } },
+        { params: { cursos: 'negocios' } },
+        { params: { cursos: 'ciencia' } },
+        { params: { cursos: 'historia' } },
+        { params: { cursos: 'literatura' } },
+        { params: { cursos: 'filosofia' } },
+        { params: { cursos: 'religion' } },
+        { params: { cursos: 'politica' } },
+        { params: { cursos: 'derecho' } },
+        { params: { cursos: 'economia' } },
+        { params: { cursos: 'psicologia' } },
+        { params: { cursos: 'sociologia' } },
+        { params: { cursos: 'antropologia' } },
+        { params: { cursos: 'geografia' } },
+        { params: { cursos: 'arquitectura' } },
+        { params: { cursos: 'medicina' } },
+        { params: { cursos: 'enfermeria' } },
+        { params: { cursos: 'veterinaria' } },
+        { params: { cursos: 'biologia' } },
+        { params: { cursos: 'quimica' } },
+        { params: { cursos: 'fisica' } },
+        { params: { cursos: 'matematicas' } },
+        { params: { cursos: 'estadistica' } },
+        { params: { cursos: 'informatica' } },
+        { params: { cursos: 'robotica' } },
+        { params: { cursos: 'inteligencia artificial' } },
+        { params: { cursos: 'ciencias de la computacion' } },
+        { params: { cursos: 'ciencias de la informacion' } },
+      // ...
+    ];
+  }
+  
+
+    const { cursos } = Astro.params;
+
+---
+
+
+        <Layout title = `${cursos}` >
+            <h1>{cursos}</h1>
+          
+        </Layout>
