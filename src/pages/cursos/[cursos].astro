@@ -1,17 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/react/cards';
 
 export async function getStaticPaths() {
     return [
-      { params: { cursos: 'arte' } },
-      { params: { cursos: 'finanzas'} },
-      { params: { cursos: 'cocina' } },
+      { params: { cursos: 'arte' }, props: { img: '/img/arte.jpg' } },
+      { params: { cursos: 'finanzas'}, props: { img: '/img/finanzas.jpeg' } },
+      { params: { cursos: 'cocina' }, props: { img: '/img/cocina.jpg' } },
         { params: { cursos: 'programacion' } },
         { params: { cursos: 'marketing' } },
-        { params: { cursos: 'idiomas' } },
-        { params: { cursos: 'design' } },
+        { params: { cursos: 'idiomas' }, props: { img: '/img/idiomas.jpg' } },
+        { params: { cursos: 'design' }, props: { img: '/img/design.jpg' } },
         { params: { cursos: 'fotografia' } },
-        { params: { cursos: 'musica' } },
+        { params: { cursos: 'musica' }, props: { img: '/img/musica.jpeg' } },
         { params: { cursos: 'salud' } },
         { params: { cursos: 'deportes' } },
         { params: { cursos: 'tecnologia' } },
@@ -48,14 +49,41 @@ export async function getStaticPaths() {
   
 
     const { cursos } = Astro.params;
+    const { img } = Astro.props;
 
 ---
 
 
         <Layout title = `${cursos}` >
-            <section class="h-screen">
-              <h1 class="flex justify-center">{cursos}</h1>
+            <section class="h-screen flex justify-center">
+              
+              <Card title={cursos} image={img} 
+              topic={cursos} description={"De cero a experto"} route={""}/>
+             <div>
+             
             </section>
         
           
         </Layout>
+
+
+         <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {cards.map((card) => (
+                  <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                    <img
+                      class="w-full h-56 object-cover object-center"
+                      src={card.img}
+                      alt="avatar"
+                    />
+                    <div class="p-4">
+                      <h1 class="text-2xl font-bold text-gray-800">{card.title}</h1>
+                      <p class="mt-2 text-gray-600">{card.description}</p>
+                      <div class="flex mt-3">
+                        <span class="text-gray-600">Precio: {card.price}</span>
+                        <button class="ml-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                          Comprar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}  -->
