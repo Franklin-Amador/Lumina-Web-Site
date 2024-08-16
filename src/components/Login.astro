@@ -2,105 +2,167 @@
 
 ---
 
-
-    <!--
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
--->
-
-<section class="h-screen py-14" >
-    <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-lg text-center">
-          <h1 class="text-2xl font-bold sm:text-3xl">Empieza hoy!</h1>
-      
-          <p class="mt-4 text-gray-500">
-           Te estamos esperando
-          </p>
+<!-- <section class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Inicia sesión en tu cuenta
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        O
+        <a href="/registro" class="font-medium text-indigo-600 hover:text-indigo-500">
+          regístrate si aún no tienes una cuenta
+        </a>
+      </p>
+    </div>
+    <form id="loginForm" class="mt-8 space-y-6">
+      <input type="hidden" name="remember" value="true" />
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="email" class="sr-only">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Correo electrónico" />
         </div>
-      
-        <form action="#" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
-          <div>
-            <label for="email" class="sr-only">Email</label>
-      
-            <div class="relative">
-              <input
-                type="email"
-                class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter email"
-              />
-      
-              <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                  />
-                </svg>
-              </span>
-            </div>
-          </div>
-      
-          <div>
-            <label for="password" class="sr-only">Password</label>
-      
-            <div class="relative">
-              <input
-                type="password"
-                class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
-                placeholder="Enter password"
-              />
-      
-              <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-              </span>
-            </div>
-          </div>
-      
-          <div class="flex items-center justify-between">
-            <p class="text-sm text-gray-500">
-              No account?
-              <a class="underline" href="/registro">Sign up</a>
-            </p>
-      
-            <button
-              type="submit"
-              class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
-            >
-              Sign in
-            </button>
-
-        
-          </div>
-        </form>
+        <div>
+          <label for="password" class="sr-only">Contraseña</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" />
+        </div>
       </div>
+
+      <div>
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Iniciar sesión
+        </button>
+      </div>
+    </form>
+  </div>
 </section>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const API_URL = 'http://127.0.0.1:8000';
+
+  async function handleLogin(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+      const response = await fetch(`${API_URL}/login/custom`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.detail || 'Error al iniciar sesión');
+      }
+
+      // Guardar el token en localStorage
+      localStorage.setItem('token', data.idToken);
+
+      // Redirigir a la página principal
+      window.location.href = 'http://localhost:3000';
+
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      alert(error.message);
+    }
+  }
+
+  loginForm.addEventListener('submit', handleLogin);
+</script> -->
+
+<section class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Inicia sesión en tu cuenta
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        O
+        <a href="/registro" class="font-medium text-indigo-600 hover:text-indigo-500">
+          regístrate si aún no tienes una cuenta
+        </a>
+      </p>
+    </div>
+    <form id="loginForm" class="mt-8 space-y-6">
+      <input type="hidden" name="remember" value="true" />
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="email" class="sr-only">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Correo electrónico" />
+        </div>
+        <div>
+          <label for="password" class="sr-only">Contraseña</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Contraseña" />
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Iniciar sesión
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  const API_URL = 'http://127.0.0.1:8000';
+  const REDIRECT_URL = 'http://localhost:3000';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
+
+    async function handleLogin(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const response = await fetch(`${API_URL}/login/custom`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        
+        if (!response.ok) {
+          throw new Error(data.detail || 'Error al iniciar sesión');
+        }
+
+        console.log('Respuesta del servidor:', data);
+
+        if (data.idToken) {
+          // Guardar el token en localStorage
+          localStorage.setItem('token', data.idToken);
+          console.log('Token guardado en localStorage:', data.idToken);
+          
+          // Verificar que se guardó correctamente
+          const storedToken = localStorage.getItem('token');
+          console.log('Token recuperado de localStorage:', storedToken);
+
+          // Redireccionar después de guardar el token
+          window.location.href = REDIRECT_URL;
+        } else {
+          console.error('No se recibió un token en la respuesta');
+          alert('No se recibió un token válido del servidor');
+        }
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error);
+        alert(error.message);
+      }
+    }
+
+    loginForm.addEventListener('submit', handleLogin);
+  });
+</script>
 
